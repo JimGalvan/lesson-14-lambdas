@@ -11,58 +11,60 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 class _2_PracticeWritingLambdas {
-	
+
 	Function<Integer, Integer> squareLambda = x -> x * x;
-	
+
 	Function<Integer, Integer> INCREMENT_LAMBDA = x -> x + 1;
-	
-	Function<String, String> REMOVE_VOWELS_LAMBDA = String -> 
-		String.replaceAll("[AaEeIiOoUu]", "");
-		
+
+	Function<String, String> REMOVE_VOWELS_LAMBDA = String -> String.replaceAll("[AaEeIiOoUu]", "");
+
 	Function<Integer, Integer> DOUBLE_LAMBDA = x -> x * 2;
-	
+
 	BiFunction<Integer, Integer, Integer> PYTHAGOREAN_LAMBDA = (x, y) -> {
-		return (int) Math.sqrt((x*x) + (y*y));
+		return (int) Math.sqrt((x * x) + (y * y));
 	};
-	
+
 	Function<Integer, String> EVEN_ODD_LAMBDA = (x) -> {
-		if( x % 2 != 0) return "odd";
-		else return "even";
+		if (x % 2 != 0)
+			return "odd";
+		else
+			return "even";
 	};
-	
+
 	Function<Character, Integer> ASCII_LAMBDA = x -> {
-		return (int)x;
+		return (int) x;
 	};
 
 	Function<String, String> CAPITALIZE_LAMBDA = word -> {
-		return word.substring(0,1).toUpperCase() + word.substring(1);};
-		
+		return word.substring(0, 1).toUpperCase() + word.substring(1);
+	};
+
 	Function<String, String> BLACKOUT_LAMBDA = word -> {
 		String result = word.replaceAll("[A-Za-z]", "#");
 		return result;
 	};
-	
+
 	@Test
 	void testIncrement() {
 		List<Integer> inputList = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4));
 		List<Integer> expectedOutput = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
 		assertEquals(expectedOutput, LambdaHelper.processList(inputList, INCREMENT_LAMBDA));
 	}
-	
+
 	@Test
 	void testRemoveVowels() {
 		String withVowels = "joonspoon";
 		String withoutVowels = LambdaHelper.processString(withVowels, REMOVE_VOWELS_LAMBDA);
 		assertEquals("jnspn", withoutVowels);
 	}
-	
+
 	@Test
 	void testDouble() {
 		List<Integer> inputList = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4));
 		List<Integer> expectedOutput = new ArrayList<Integer>(Arrays.asList(0, 2, 4, 6, 8));
 		assertEquals(expectedOutput, LambdaHelper.processList(inputList, DOUBLE_LAMBDA));
 	}
-	
+
 	@Test
 	void testPythagoras() {
 		int sideA = 3;
@@ -70,26 +72,26 @@ class _2_PracticeWritingLambdas {
 		int expectedHypotenuse = 5;
 		assertEquals(expectedHypotenuse, LambdaHelper.processBiFunction(sideA, sideB, PYTHAGOREAN_LAMBDA));
 	}
-	
+
 	@Test
 	void testEvenOdd() {
 		assertEquals("odd", LambdaHelper.processFunction(777, EVEN_ODD_LAMBDA));
 		assertEquals("even", LambdaHelper.processFunction(44, EVEN_ODD_LAMBDA));
 	}
-	
+
 	@Test
 	void testAsciiValue() {
 		assertEquals(65, LambdaHelper.processCharFunction('A', ASCII_LAMBDA));
 		assertEquals(98, LambdaHelper.processCharFunction('b', ASCII_LAMBDA));
 		assertEquals(122, LambdaHelper.processCharFunction('z', ASCII_LAMBDA));
 	}
-	
+
 	@Test
 	void testCapitalize() {
 		assertEquals("Picard", LambdaHelper.processString("picard", CAPITALIZE_LAMBDA));
 		assertEquals("Spock", LambdaHelper.processString("spock", CAPITALIZE_LAMBDA));
 	}
-	
+
 	@Test
 	void testBlackout() {
 		assertEquals("####", LambdaHelper.processString("shit", BLACKOUT_LAMBDA));
