@@ -10,7 +10,7 @@ public class _3_JobCandidateSelectorUsingLambdas {
 				(JobCandidate o1, JobCandidate o2) -> o1.getSalaryRequired() - o2.getSalaryRequired());
 		
 		System.out.println("By salary: " + JobCandidate.jobCandidates+ "\n");
-
+		
 
 		// 2. Filter out any candidates that have not been taught by me (June)
 		// Hint: see the removeIf() method in the Collections class
